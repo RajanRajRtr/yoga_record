@@ -47,7 +47,6 @@ router.delete('/:id', async (req, res) => {
       .status(200)
       .json({ message: 'Media deleted successfully', media: deleted });
   } catch (err) {
-    console.error('❌ Delete failed:', err);
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
