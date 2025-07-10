@@ -51,4 +51,18 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
+
+router.put('/:id', async (req, res) => {
+  const { name, description, url } = req.body;
+  try {
+    const updated = await Media.findByIdAndUpdate(
+      req.params.id,
+      { name, description, url },
+      { new: true }
+    );
+    res.json(updated);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update media' });
+  }
+});
 module.exports = router;
